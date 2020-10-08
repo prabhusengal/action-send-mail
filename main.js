@@ -29,13 +29,14 @@ async function main() {
         const body = core.getInput("body", { required: true })
         const to = core.getInput("to", { required: true })
         const from = core.getInput("from", { required: true })
+        const secure = core.getInput("secure", { required: true })
         const content_type = core.getInput("content_type", { required: true })
         const attachments = core.getInput("attachments", { required: false })
 
         const transport = nodemailer.createTransport({
             host: server_address,
             port: server_port,
-            secure: server_port == "465",
+            secure: secure,
             auth: {
                 user: username,
                 pass: password,
